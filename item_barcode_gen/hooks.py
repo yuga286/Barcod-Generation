@@ -140,13 +140,25 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+app_include_js = "item_barcode_gen/public/js/item.js"
+
+doctype_js = {
+    "Item": "public/js/item.js"
+}
+
+
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# }
+    
+    "Item": {
+        "after_insert": "item_barcode_gen.api._generate_barcode"
+    }
+
+}
 
 # Scheduled Tasks
 # ---------------
